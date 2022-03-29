@@ -9,7 +9,7 @@ import com.example.fitnessapp.fragments.FoodFragment
 import com.example.fitnessapp.fragments.FrontFragment
 import com.google.android.material.navigation.NavigationBarView
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), Communicator {
 
     private val frontFragment = FrontFragment()
     private val foodFragment = FoodFragment()
@@ -33,11 +33,15 @@ class MainActivity : AppCompatActivity() {
             true
         })
 
+    }
+
+    override fun passDataCom(editTextInput: String) {
+        val bundle = Bundle()
+        bundle.putString("input_txt", editTextInput)
 
 
-
-
-
+        val frag2 = FoodFragment()
+        frag2.arguments = bundle
     }
 
     private fun replaceFragment(fragment: Fragment){
@@ -48,3 +52,10 @@ class MainActivity : AppCompatActivity() {
         }
     }
 }
+
+interface Communicator {
+    fun passDataCom(editTextInput: String)
+}
+
+
+

@@ -5,7 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.fitnessapp.Communicator
 import com.example.fitnessapp.R
+import com.example.fitnessapp.databinding.FragmentFoodBinding
+import com.example.fitnessapp.databinding.FragmentFrontBinding
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -22,6 +25,9 @@ class FrontFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
+    private var inputText: String? = ""
+    private lateinit var comm: Communicator
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -30,13 +36,23 @@ class FrontFragment : Fragment() {
         }
     }
 
+    private var _binding: FragmentFrontBinding? = null
+    private val binding get() = _binding!!
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
+        _binding = FragmentFrontBinding.inflate(inflater, container, false)
+        comm = requireActivity() as Communicator
+        _binding = binding
+        inputText = arguments?.getString("input_txt")
+        binding.totalFood.text = inputText
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_front, container, false)
+        return binding?.root
     }
+
+
 
     companion object {
         /**
