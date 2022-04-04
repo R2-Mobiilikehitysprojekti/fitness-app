@@ -53,6 +53,7 @@ class MainActivity : AppCompatActivity(), Communicator {
     }
 }
 
+
 interface Communicator {
     fun passDataCom(editTextInput: String)
 }

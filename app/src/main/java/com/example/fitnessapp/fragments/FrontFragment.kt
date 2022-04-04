@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.fitnessapp.Communicator
+import com.example.fitnessapp.DBHelper
 import com.example.fitnessapp.R
 import com.example.fitnessapp.databinding.FragmentFoodBinding
 import com.example.fitnessapp.databinding.FragmentFrontBinding
@@ -15,11 +16,7 @@ import com.example.fitnessapp.databinding.FragmentFrontBinding
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [FrontFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
+
 class FrontFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
@@ -46,23 +43,28 @@ class FrontFragment : Fragment() {
         _binding = FragmentFrontBinding.inflate(inflater, container, false)
         comm = requireActivity() as Communicator
         _binding = binding
-        inputText = arguments?.getString("input_txt")
-        binding.totalFood.text = inputText
-        // Inflate the layout for this fragment
+        //inputText = arguments?.getString("input_txt")
+        //binding.totalFood.text = inputText
+
+        val db = DBHelper(requireActivity(), null)
+
+        val cursor = db.getCal()
+
+        cursor!!.moveToFirst()
+        binding.totalFood.text = cursor.getString(cursor.getColumnIndex(DBHelper.AMOUNT))
+
+        while(cursor.moveToNext()) {
+            binding.totalFood.text = cursor.getString(cursor.getColumnIndex(DBHelper.AMOUNT))
+        }
+        cursor.close()
+
         return binding?.root
     }
 
 
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment FrontFragment.
-         */
+
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
