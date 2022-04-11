@@ -1,12 +1,22 @@
 package com.example.fitnessapp
 
+import android.content.ContentValues.TAG
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import com.example.fitnessapp.databinding.ActivityMainBinding
 import com.example.fitnessapp.fragments.ExerciseFragment
 import com.example.fitnessapp.fragments.FoodFragment
 import com.example.fitnessapp.fragments.FrontFragment
+import com.github.mikephil.charting.charts.BarChart
+import com.github.mikephil.charting.components.AxisBase
+import com.github.mikephil.charting.components.XAxis
+import com.github.mikephil.charting.data.BarData
+import com.github.mikephil.charting.data.BarDataSet
+import com.github.mikephil.charting.data.BarEntry
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
+import com.github.mikephil.charting.utils.ColorTemplate
 import com.google.android.material.navigation.NavigationBarView
 
 class MainActivity : AppCompatActivity(), Communicator {
@@ -14,10 +24,9 @@ class MainActivity : AppCompatActivity(), Communicator {
     private val frontFragment = FrontFragment()
     private val foodFragment = FoodFragment()
     private val exerciseFragment = ExerciseFragment()
-
-
-
     lateinit var binding: ActivityMainBinding
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -43,6 +52,7 @@ class MainActivity : AppCompatActivity(), Communicator {
         val frag2 = FoodFragment()
         frag2.arguments = bundle
     }
+
 
     private fun replaceFragment(fragment: Fragment){
         if(fragment != null){
