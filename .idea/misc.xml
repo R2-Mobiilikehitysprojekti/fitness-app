@@ -3,10 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/KotlinProjects/fitnessapp/app/src/main/res/drawable/rectangle.xml" value="0.3615" />
         <entry key="..\:/KotlinProjects/fitnessapp/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/KotlinProjects/fitnessapp/app/src/main/res/layout/fragment_exercise.xml" value="0.18802083333333333" />
         <entry key="..\:/KotlinProjects/fitnessapp/app/src/main/res/layout/fragment_food.xml" value="0.18802083333333333" />
-        <entry key="..\:/KotlinProjects/fitnessapp/app/src/main/res/layout/fragment_front.xml" value="0.18802083333333333" />
+        <entry key="..\:/KotlinProjects/fitnessapp/app/src/main/res/layout/fragment_front.xml" value="0.25" />
         <entry key="..\:/KotlinProjects/fitnessapp/app/src/main/res/menu/menu.xml" value="0.18802083333333333" />
         <entry key="..\:/Users/jonop/Documents/Fitness-app new/fitness-app/app/src/main/res/layout/activity_main.xml" value="0.358695652173913" />
         <entry key="..\:/Users/jonop/Documents/Fitness-app new/fitness-app/app/src/main/res/layout/fragment_exercise.xml" value="0.358695652173913" />
