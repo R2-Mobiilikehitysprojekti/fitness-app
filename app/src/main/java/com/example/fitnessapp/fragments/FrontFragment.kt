@@ -1,5 +1,6 @@
 package com.example.fitnessapp.fragments
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -36,6 +37,7 @@ class FrontFragment : Fragment() {
     private var _binding: FragmentFrontBinding? = null
     private val binding get() = _binding!!
 
+    @SuppressLint("Range")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -49,26 +51,32 @@ class FrontFragment : Fragment() {
         val db = DBHelper(requireActivity(), null)
 
         val cursor = db.getCal()
-        val cursor2 = db.getExer()
 
-        cursor!!.moveToFirst()
-        cursor2!!.moveToFirst()
-        binding.totalFood.text = cursor.getString(cursor.getColumnIndex(DBHelper.AMOUNT))
-        binding.totalExercise.text = cursor2.getString(cursor2.getColumnIndex(DBHelper.AMOUNT2))
+        if (cursor != null && cursor.moveToFirst() ) {
+            cursor!!.moveToFirst()
 
-
-        while(cursor.moveToNext()) {
             binding.totalFood.text = cursor.getString(cursor.getColumnIndex(DBHelper.AMOUNT))
 
+
+            while (cursor.moveToNext()) {
+                binding.totalFood.text = cursor.getString(cursor.getColumnIndex(DBHelper.AMOUNT))
+
+            }
+
+            cursor.close()
         }
+        val cursor2 = db.getExer()
 
-        while((cursor2.moveToNext())){
-           binding.totalExercise.text = cursor2.getString(cursor2.getColumnIndex(DBHelper.AMOUNT2))
+        if (cursor2 != null && cursor2.moveToFirst() ) {
+            cursor2!!.moveToFirst()
+            binding.totalExercise.text = cursor2.getString(cursor2.getColumnIndex(DBHelper.AMOUNT2))
+            while ((cursor2.moveToNext())) {
+                binding.totalExercise.text =
+                    cursor2.getString(cursor2.getColumnIndex(DBHelper.AMOUNT2))
 
+            }
+            cursor2.close()
         }
-
-        cursor.close()
-        cursor2.close()
 
 
         return binding?.root

@@ -5,6 +5,7 @@ import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import android.util.Log
 import androidx.core.content.contentValuesOf
 import com.example.fitnessapp.fragments.FoodFragment
 import java.util.prefs.PreferencesFactory
@@ -13,14 +14,16 @@ class DBHelper(context: Context, factory: SQLiteDatabase.CursorFactory?) :
 SQLiteOpenHelper(context, DATABASE_NAME, factory, DATABASE_VERSION) {
 
 
-    val query = (("CREATE TABLE " + TABLE_NAME)+ " (" + ENTRY_ID + " INTEGER PRIMARY KEY, " +
-            AMOUNT + " INT)")
-    val query2 =(("CREATE TABLE " + TABLE_NAME2)+ " (" + ENTRY_ID2 + " INTEGER PRIMARY KEY, " +
-            AMOUNT2 + " INT)")
+    val query = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME+ " (" + ENTRY_ID + " INTEGER PRIMARY KEY, " +
+            AMOUNT + " INT)"
+    val query2 = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME2+ " (" + ENTRY_ID2 + " INTEGER PRIMARY KEY, " +
+            AMOUNT2 + " INT)"
 
     override fun onCreate(db: SQLiteDatabase) {
         db.execSQL(query2);
         db.execSQL(query);
+        println(query)
+        println(query2)
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, p1: Int, p2: Int) {
@@ -41,10 +44,10 @@ SQLiteOpenHelper(context, DATABASE_NAME, factory, DATABASE_VERSION) {
         db.close()
     }
 
-    fun addExer(amount: Int){
+    fun addExer(amount2: Int){
         val values = ContentValues()
 
-        values.put(AMOUNT2, amount)
+        values.put(AMOUNT2, amount2)
 
         val db2 = this.writableDatabase
 
@@ -63,11 +66,12 @@ SQLiteOpenHelper(context, DATABASE_NAME, factory, DATABASE_VERSION) {
 
     fun getExer(): Cursor? {
 
-       val db = this.readableDatabase
+       val db2 = this.readableDatabase
 
-        return db.rawQuery("SELECT * FROM " + TABLE_NAME2, null)
+        return db2.rawQuery("SELECT "+ AMOUNT2+" FROM " + TABLE_NAME2, null)
 
     }
+
 
 
 
