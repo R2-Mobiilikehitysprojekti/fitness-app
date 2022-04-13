@@ -45,7 +45,6 @@ class FoodFragment : Fragment(R.layout.fragment_food) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
@@ -53,6 +52,7 @@ class FoodFragment : Fragment(R.layout.fragment_food) {
 
         //now draw bar chart with dynamic data
     }
+
 
     override fun onCreateView(
 
@@ -64,7 +64,7 @@ class FoodFragment : Fragment(R.layout.fragment_food) {
         _binding = FragmentFoodBinding.inflate(inflater, container, false)
         comm = requireActivity() as Communicator
         _binding = binding
-        binding?.foodBtn.setOnClickListener{
+        binding.foodBtn.setOnClickListener{
 
 
             val db = DBHelper(requireActivity(), null)
@@ -82,33 +82,39 @@ class FoodFragment : Fragment(R.layout.fragment_food) {
 
             //comm.passDataCom(binding.foodTxt.text.toString())
 
+
+
+
+            scoreList = getScoreList()
+
+            initBarChart()
+
+            val entries: ArrayList<BarEntry> = ArrayList()
+
+            //you can replace this data object with  your custom object
+            for (i in scoreList.indices) {
+                val score = scoreList[i]
+                entries.add(BarEntry(i.toFloat(), score.score.toFloat()))
+            }
+
+            val barDataSet = BarDataSet(entries, "")
+            barDataSet.setColors(*ColorTemplate.COLORFUL_COLORS)
+
+            val data = BarData(barDataSet)
+            barChart.data = data
+
+            barChart.invalidate()
+
         }
-
-        scoreList = getScoreList()
-
-        initBarChart()
-
-        val entries: ArrayList<BarEntry> = ArrayList()
-        //you can replace this data object with  your custom object
-        for (i in scoreList.indices) {
-            val score = scoreList[i]
-            entries.add(BarEntry(i.toFloat(), score.score.toFloat()))
-        }
-
-
-        val barDataSet = BarDataSet(entries, "")
-        barDataSet.setColors(*ColorTemplate.COLORFUL_COLORS)
-
-        val data = BarData(barDataSet)
-        barChart.data = data
-
-
-        //draw chart
-        barChart.invalidate()
 
         // Inflate the layout for this fragment
-        return binding?.root
+        return binding.root
     }
+
+    data class Score(
+        val name:String,
+        val score: Int,
+    )
 
     // simulate api call
     // we are initialising it directly
@@ -121,11 +127,6 @@ class FoodFragment : Fragment(R.layout.fragment_food) {
 
         return scoreList
     }
-
-    data class Score(
-        val name:String,
-        val score: Int,
-    )
 
     private fun initBarChart() {
 

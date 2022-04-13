@@ -51,10 +51,10 @@ class FrontFragment : Fragment() {
         val cursor = db.getCal()
 
         cursor!!.moveToFirst()
-        binding.totalFood.text = cursor.getString(cursor.getColumnIndex(DBHelper.AMOUNT))
+        //binding.totalFood.text = cursor.getString(cursor.getColumnIndex(DBHelper.AMOUNT))
 
         while(cursor.moveToNext()) {
-            binding.totalFood.text = cursor.getString(cursor.getColumnIndex(DBHelper.AMOUNT))
+            //binding.totalFood.text = cursor.getString(cursor.getColumnIndex(DBHelper.AMOUNT))
         }
         cursor.close()
 
