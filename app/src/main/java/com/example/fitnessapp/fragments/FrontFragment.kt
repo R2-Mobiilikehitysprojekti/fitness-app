@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.fitnessapp.Communicator
 import com.example.fitnessapp.DBHelper
-import com.example.fitnessapp.DBHelper2
 import com.example.fitnessapp.R
 import com.example.fitnessapp.databinding.FragmentFoodBinding
 import com.example.fitnessapp.databinding.FragmentFrontBinding
@@ -48,19 +47,29 @@ class FrontFragment : Fragment() {
         //binding.totalFood.text = inputText
 
         val db = DBHelper(requireActivity(), null)
-        val db2 = DBHelper2(requireActivity(), null)
 
         val cursor = db.getCal()
+        val cursor2 = db.getExer()
 
         cursor!!.moveToFirst()
+        cursor2!!.moveToFirst()
         binding.totalFood.text = cursor.getString(cursor.getColumnIndex(DBHelper.AMOUNT))
-        binding.totalExercise.text = cursor.getString(cursor.getColumnIndex(DBHelper2.AMOUNT))
+        binding.totalExercise.text = cursor2.getString(cursor2.getColumnIndex(DBHelper.AMOUNT2))
+
 
         while(cursor.moveToNext()) {
             binding.totalFood.text = cursor.getString(cursor.getColumnIndex(DBHelper.AMOUNT))
-            binding.totalExercise.text = cursor.getString(cursor.getColumnIndex(DBHelper2.AMOUNT))
+
         }
+
+        while((cursor2.moveToNext())){
+           binding.totalExercise.text = cursor2.getString(cursor2.getColumnIndex(DBHelper.AMOUNT2))
+
+        }
+
         cursor.close()
+        cursor2.close()
+
 
         return binding?.root
     }

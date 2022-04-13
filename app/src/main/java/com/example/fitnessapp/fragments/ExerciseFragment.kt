@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import com.example.fitnessapp.Communicator
-import com.example.fitnessapp.DBHelper2
+import com.example.fitnessapp.DBHelper
 import com.example.fitnessapp.R
 import com.example.fitnessapp.databinding.FragmentExerciseBinding
 
@@ -45,11 +45,11 @@ class ExerciseFragment : Fragment(R.layout.fragment_exercise) {
         _binding = binding
         binding?.exerciseBtn.setOnClickListener{
 
-            val db2 = DBHelper2(requireActivity(),null)
+            val db = DBHelper(requireActivity(),null)
 
             val amount = binding.exercisetxt.text.toString().toInt()
 
-            db2.addCal(amount)
+            db.addExer(amount)
 
             Toast.makeText(requireActivity(), binding.exercisetxt.text.toString() + "lisätty", Toast.LENGTH_SHORT).show()
 
