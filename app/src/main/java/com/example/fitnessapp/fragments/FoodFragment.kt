@@ -73,7 +73,6 @@ class FoodFragment : Fragment(R.layout.fragment_food) {
     }
 
 
-
     companion object {
         // TODO: Rename and change types and number of parameters
         @JvmStatic

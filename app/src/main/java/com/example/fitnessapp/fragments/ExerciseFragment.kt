@@ -1,26 +1,31 @@
 package com.example.fitnessapp.fragments
 
+import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import com.example.fitnessapp.Communicator
+import com.example.fitnessapp.DBHelper
 import com.example.fitnessapp.R
+import com.example.fitnessapp.databinding.FragmentExerciseBinding
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [ExerciseFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class ExerciseFragment : Fragment() {
+
+class ExerciseFragment : Fragment(R.layout.fragment_exercise) {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+
+    private lateinit var comm: Communicator
+    private var _binding: FragmentExerciseBinding? = null
+    private val binding get() =_binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,8 +39,28 @@ class ExerciseFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+        _binding = FragmentExerciseBinding.inflate(inflater, container, false)
+        comm = requireActivity() as Communicator
+        _binding = binding
+        binding?.exerciseBtn.setOnClickListener{
+
+            val db = DBHelper(requireActivity(),null)
+
+            val amount = binding.exercisetxt.text.toString().toInt()
+
+            db.addExer(amount)
+
+            Toast.makeText(requireActivity(), binding.exercisetxt.text.toString() + "lisätty", Toast.LENGTH_SHORT).show()
+
+            binding.exerciseId.text = binding.exercisetxt.text.toString()
+
+            binding.exercisetxt.text.clear()
+        }
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_exercise, container, false)
+        //return inflater.inflate(R.layout.fragment_exercise, container, false)
+        return binding?.root
+
     }
 
     companion object {
