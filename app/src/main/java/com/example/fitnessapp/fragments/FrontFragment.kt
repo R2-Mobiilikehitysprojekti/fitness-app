@@ -11,6 +11,9 @@ import com.example.fitnessapp.DBHelper
 import com.example.fitnessapp.R
 import com.example.fitnessapp.databinding.FragmentFoodBinding
 import com.example.fitnessapp.databinding.FragmentFrontBinding
+import java.text.SimpleDateFormat
+import java.time.DayOfWeek
+import java.util.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -53,13 +56,13 @@ class FrontFragment : Fragment() {
         val cursor = db.getCal()
 
         if (cursor != null && cursor.moveToFirst() ) {
-            cursor!!.moveToFirst()
+            cursor.moveToFirst()
 
-            binding.totalFood.text = cursor.getString(cursor.getColumnIndex(DBHelper.AMOUNT))
+            binding.totalFood.text = cursor.getString(cursor.getColumnIndex(DBHelper.TOTAL))
 
 
             while (cursor.moveToNext()) {
-                binding.totalFood.text = cursor.getString(cursor.getColumnIndex(DBHelper.AMOUNT))
+                binding.totalFood.text = cursor.getString(cursor.getColumnIndex(DBHelper.TOTAL))
 
             }
 
