@@ -65,7 +65,7 @@ SQLiteOpenHelper(context, DATABASE_NAME, factory, DATABASE_VERSION) {
 
         db2.close()
     }
-
+// asdfahf
     fun getCal(): Cursor? {
 
         val db = this.readableDatabase
