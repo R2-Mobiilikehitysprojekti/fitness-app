@@ -61,7 +61,7 @@ class FoodFragment : Fragment(R.layout.fragment_food) {
 
             Toast.makeText(requireActivity(), binding.foodTxt.text.toString() + " lisätty", Toast.LENGTH_SHORT).show()
 
-            binding.foodId.text = binding.foodTxt.text.toString()
+            binding.foodId.text =" added " + binding.foodTxt.text.toString() + " kcal"
 
             binding.foodTxt.text.clear()
 
