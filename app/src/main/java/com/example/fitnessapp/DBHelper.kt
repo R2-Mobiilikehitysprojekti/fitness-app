@@ -120,10 +120,7 @@ SQLiteOpenHelper(context, DATABASE_NAME, factory, DATABASE_VERSION) {
         val TYPE = "type"
 
         val TOTAL2 = "total2"
-
-
     }
-
 }
 
 
