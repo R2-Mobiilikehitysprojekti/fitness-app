@@ -73,11 +73,11 @@ class FrontFragment : Fragment() {
         if (cursor2 != null && cursor2.moveToFirst() ) {
             cursor2!!.moveToFirst()
             binding.totalExercise.text = cursor2.getString(cursor2.getColumnIndex(DBHelper.TOTAL2)) + " min"
-            binding.textView8.text = cursor2.getString(cursor2.getColumnIndex(DBHelper.TOTAL2))
+            binding.textView7.text = cursor2.getString(cursor2.getColumnIndex(DBHelper.TOTAL2))
             while ((cursor2.moveToNext())) {
                 binding.totalExercise.text =
                     cursor2.getString(cursor2.getColumnIndex(DBHelper.TOTAL2))
-                binding.textView8.text = cursor2.getString(cursor2.getColumnIndex(DBHelper.TOTAL2))
+                binding.textView7.text = cursor2.getString(cursor2.getColumnIndex(DBHelper.TOTAL2))
 
             }
             cursor2.close()
