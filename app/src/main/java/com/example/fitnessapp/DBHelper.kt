@@ -19,7 +19,9 @@ SQLiteOpenHelper(context, DATABASE_NAME, factory, DATABASE_VERSION) {
     val query = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME+ " (" + ENTRY_ID + " INTEGER PRIMARY KEY, " +
             AMOUNT + " INT, " + DATE + " CHAR(255), " + WEEK + " CHAR(255))"
     val query2 = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME2+ " (" + ENTRY_ID2 + " INTEGER PRIMARY KEY, " +
-            AMOUNT2 + " INT)"
+            AMOUNT2 + " INT, " + TYPE + " CHAR(255), " + DATE + " CHAR(255), " + WEEK + " CHAR(255))"
+
+
 
     override fun onCreate(db: SQLiteDatabase) {
         db.execSQL(query2);
@@ -54,10 +56,16 @@ SQLiteOpenHelper(context, DATABASE_NAME, factory, DATABASE_VERSION) {
         db.close()
     }
 
-    fun addExer(amount2: Int){
+    fun addExer(amount2: Int, type: String){
         val values = ContentValues()
 
         values.put(AMOUNT2, amount2)
+
+        values.put(TYPE, type)
+
+        values.put(DATE, today)
+
+        values.put(WEEK, weekNumber)
 
         val db2 = this.writableDatabase
 
@@ -78,7 +86,7 @@ SQLiteOpenHelper(context, DATABASE_NAME, factory, DATABASE_VERSION) {
 
        val db2 = this.readableDatabase
 
-        return db2.rawQuery("SELECT "+ AMOUNT2+" FROM " + TABLE_NAME2, null)
+        return db2.rawQuery("SELECT sum(amount2) AS "+ TOTAL2 + " FROM " + TABLE_NAME2 +" WHERE " + DATE +"="+ "'"+ today +"'" , null)
 
     }
 
@@ -108,6 +116,11 @@ SQLiteOpenHelper(context, DATABASE_NAME, factory, DATABASE_VERSION) {
         val AMOUNT2 = "amount2"
 
         val TOTAL = "Total"
+
+        val TYPE = "type"
+
+        val TOTAL2 = "total2"
+
 
     }
 

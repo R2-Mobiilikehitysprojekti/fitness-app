@@ -48,8 +48,9 @@ class ExerciseFragment : Fragment(R.layout.fragment_exercise) {
             val db = DBHelper(requireActivity(),null)
 
             val amount = binding.exercisetxt.text.toString().toInt()
+            val type = binding.type.text.toString()
 
-            db.addExer(amount)
+            db.addExer(amount, type)
 
             Toast.makeText(requireActivity(), binding.exercisetxt.text.toString() + "lisätty", Toast.LENGTH_SHORT).show()
 
