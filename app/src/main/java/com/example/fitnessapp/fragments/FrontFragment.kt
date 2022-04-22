@@ -59,7 +59,7 @@ class FrontFragment : Fragment() {
             cursor.moveToFirst()
 
             binding.totalFood.text = cursor.getString(cursor.getColumnIndex(DBHelper.TOTAL)) + " kcal"
-
+            binding.textView4.text = cursor.getString(cursor.getColumnIndex(DBHelper.TOTAL))
 
             while (cursor.moveToNext()) {
                 binding.totalFood.text = cursor.getString(cursor.getColumnIndex(DBHelper.TOTAL))
@@ -73,9 +73,11 @@ class FrontFragment : Fragment() {
         if (cursor2 != null && cursor2.moveToFirst() ) {
             cursor2!!.moveToFirst()
             binding.totalExercise.text = cursor2.getString(cursor2.getColumnIndex(DBHelper.TOTAL2)) + " min"
+            binding.textView8.text = cursor2.getString(cursor2.getColumnIndex(DBHelper.TOTAL2))
             while ((cursor2.moveToNext())) {
                 binding.totalExercise.text =
                     cursor2.getString(cursor2.getColumnIndex(DBHelper.TOTAL2))
+                binding.textView8.text = cursor2.getString(cursor2.getColumnIndex(DBHelper.TOTAL2))
 
             }
             cursor2.close()

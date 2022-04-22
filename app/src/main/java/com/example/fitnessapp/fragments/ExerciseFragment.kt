@@ -6,6 +6,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import android.widget.ListAdapter
+import android.widget.ListView
 import android.widget.Toast
 import com.example.fitnessapp.Communicator
 import com.example.fitnessapp.DBHelper
@@ -43,6 +46,14 @@ class ExerciseFragment : Fragment(R.layout.fragment_exercise) {
         _binding = FragmentExerciseBinding.inflate(inflater, container, false)
         comm = requireActivity() as Communicator
         _binding = binding
+
+
+     /*   val array: Array<String> = arrayOf()
+        val list: MutableList<String> = array.toMutableList()
+        val listView:ListView = binding.listView
+        var adapter: ArrayAdapter<String>
+       */
+
         binding?.exerciseBtn.setOnClickListener{
 
             val db = DBHelper(requireActivity(),null)
@@ -54,9 +65,13 @@ class ExerciseFragment : Fragment(R.layout.fragment_exercise) {
 
             Toast.makeText(requireActivity(), binding.exercisetxt.text.toString() + "lisätty", Toast.LENGTH_SHORT).show()
 
-            binding.exerciseId.text = binding.exercisetxt.text.toString()
+            binding.exerciseId.text = "Added " + binding.exercisetxt.text.toString() + " minutes of " + binding.type.text.toString()
 
             binding.exercisetxt.text.clear()
+            binding.type.text.clear()
+
+
+
         }
         // Inflate the layout for this fragment
         //return inflater.inflate(R.layout.fragment_exercise, container, false)
