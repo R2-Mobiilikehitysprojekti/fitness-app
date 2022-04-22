@@ -6,10 +6,10 @@
         android:title="Frontpage" />
     <item
         android:id="@+id/food"
-        android:icon="@drawable/ic_baseline_favorite_24"
+        android:icon="@drawable/ic_baseline_restaurant_24"
         android:title="Food" />
     <item
         android:id="@+id/exercise"
-        android:icon="@drawable/ic_baseline_favorite_24"
+        android:icon="@drawable/ic_baseline_fitness_center_24"
         android:title="Exercise" />
 </menu>
