@@ -10,6 +10,7 @@ import com.example.fitnessapp.DBHelper
 import com.example.fitnessapp.R
 import com.example.fitnessapp.databinding.FragmentFoodBinding
 import android.widget.Toast
+import androidx.constraintlayout.widget.ConstraintLayout
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -43,13 +44,12 @@ class FoodFragment : Fragment(R.layout.fragment_food) {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
 
-    ): View {
+    ): ConstraintLayout? {
 
         _binding = FragmentFoodBinding.inflate(inflater, container, false)
         comm = requireActivity() as Communicator
         _binding = binding
-        binding?.foodBtn.setOnClickListener{
-
+        binding?.foodBtn?.setOnClickListener{
 
 
             val db = DBHelper(requireActivity(), null)

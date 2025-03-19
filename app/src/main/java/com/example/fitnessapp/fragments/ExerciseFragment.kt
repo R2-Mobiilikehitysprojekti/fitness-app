@@ -54,7 +54,7 @@ class ExerciseFragment : Fragment(R.layout.fragment_exercise) {
         var adapter: ArrayAdapter<String>
        */
 
-        binding?.exerciseBtn.setOnClickListener{
+        binding?.exerciseBtn?.setOnClickListener{
 
             val db = DBHelper(requireActivity(),null)
 
@@ -69,7 +69,6 @@ class ExerciseFragment : Fragment(R.layout.fragment_exercise) {
 
             binding.exercisetxt.text.clear()
             binding.type.text.clear()
-
 
 
         }
